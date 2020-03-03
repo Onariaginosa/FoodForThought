@@ -1,46 +1,25 @@
 import React from "react";
 
-export default function displayRecipe({  }) {
+export default function displayRecipe({ recipe }) {
   const style = {
     backgroundColor: "#ffccff",
     padding: 10
   };
 
-//   if (!film) {
-//     return <div style={style}>Select a recipe</div>;
-//   }
+  // if (!recipe) {
+  //   return <div style ={style}> Choose a recipe </div>;
+  // }
+
   return (
     <div style={style}>
-        <h4> Your Recipes </h4> 
-        <h1>Recipe Name</h1>
-        <h2>Minutes for Preparation: </h2>
-        <h3>Servings: </h3>
-
-
-      {/* <h2>{recipe.title}</h2>
-      <p>{recipe.description}</p>
-      <div>
-        <b>"Image": Baked-Cheese-Manicotti-633508.jpg</b>: {}
+        <h1>Recipe Name: {recipe.title} </h1>
+        <div>
+         <b> Minutes for Preparation</b>: {recipe.minutes}
+        </div>
+        <div>
+         <b> Servings</b>: {recipe.servings}
       </div>
-      <div>
-        <b>"Ready In Minutes": 45</b>: {}
-      </div>
-      <div>
-        <b>"Servings": 6</b>: {}
-      </div>
-      <div>
-        <b>"Title": "Baked Cheese Manicotti"</b>: {}
-      </div> */}
     </div>
   );
 }
 
-/*
- "image": "Baked-Cheese-Manicotti-633508.jpg",
-            "imageUrls": [
-                "Baked-Cheese-Manicotti-633508.jpg"
-            ],
-            "readyInMinutes": 45,
-            "servings": 6,
-            "title": "Baked Cheese Manicotti"
-*/
