@@ -4,8 +4,6 @@ in order to use our app...
 1) git clone https://github.com/Onariaginosa/FoodForThought.git
 2) go to directory foodforthought
 3) npm install
-
-to run the program:
 4) npm start
 
 
