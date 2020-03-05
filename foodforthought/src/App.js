@@ -2,7 +2,7 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from 'react-bootstrap/Navbar';
 import foodform from "./foodform.js";
-import displayRecipe from "./displayRecipe.js";
+// import displayRecipe from "./displayRecipe.js";
 import {
   BrowserRouter as Router,
   Route,
@@ -31,7 +31,7 @@ function App() {
       <div className="displayRecipe">
         <Router>
           <Switch>
-            <Route exact path="/" component={displayRecipe}></Route>
+            {/* <Route exact path="/" component={displayRecipe}></Route> */}
           </Switch>
         </Router>
       </div>
