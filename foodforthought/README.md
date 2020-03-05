@@ -1,8 +1,5 @@
 # Food For Thought
-Breelyn Betts: bbetts2@lion.lmu.edu, https://github.com/breelynbetts
-Warren Lee: warrendlee1@gmail.com, https://github.com/warrendlee1?tab=repositories
-Ona Igbinedion: oigbined@lion.lmu.edu, https://github.com/Onariaginosa 
-Michael Elias: MichaelElias123@gmail.com, https://github.com/Michael-Elias 
+Breelyn Betts, Warren Lee, Ona Igbinedion, Michael Elias
 
 To use our app...
 
