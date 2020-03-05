@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from 'react-bootstrap/Navbar';
 import FoodForm from "./foodform.js";
 import Recipe from "./Recipe";
-import RecipeList from "./Components/RecipeList";
+import RecipeList from "./Components/RecipeList.js";
 import {
   BrowserRouter as Router,
   Route,
@@ -51,7 +51,7 @@ class App extends React.Component {
                 </div>
                 <div className ="row">
                     <div className = "recipeList col">
-                        <RecipeList />
+                         <RecipeList />
                     </div>
 
                     <div className = "recipe col">

@@ -14,8 +14,6 @@ export default function Recipe(props) {
         console.log("USE EFFECT CALLED")
         const getData = async () => {
             const data = await getRecipe()
-            console.log("DATA:")
-            console.log(data)
             setRecipe(data)
         }
         getData()

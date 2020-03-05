@@ -1,6 +1,6 @@
 // export default function GetRecipe() {
 const getRecipe = async () => {
-    const API_KEY = "3e9268cb3212476ab288e2cdc1fcba3d";
+    const API_KEY = "c2e4ed57e02c47eab1daa965d0927fe1";
     let RECIPE_ID = 716429;
     let requestString = "https://api.spoonacular.com/recipes/";
     // uses 1 and 0.01 points if nutrution is included
