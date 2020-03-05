@@ -16,41 +16,42 @@ const Intolerances = [
   { label: 'Intolerance 2', value: 2},
 ];
 
-function foodform() {
+class FoodForm extends React.Component {
+  render(){
   return (
     <div style={{backgroundColor: "#e3e3e3"}}>
 
 
-      <ul> 
+      <ul>
         {
           <label>Food Form</label>
         }
-        {      
+        {
           <form>
             <label>
               Dietary Restrictions:
               <ReactMultiSelectCheckboxes options={DietaryRestrictions} />
             </label>
           </form>
-        } 
-        {      
+        }
+        {
           <form>
             <label>
               Intolerances:
               <ReactMultiSelectCheckboxes options={Intolerances} />
             </label>
-            
+
           </form>
-        } 
-        {      
+        }
+        {
           <form>
             <label>
               Search Ingredients:
               <input type="text" name="name" />
             </label>
-            
+
           </form>
-        } 
+        }
         {
           <input type="submit" value="Submit" />
         }
@@ -60,6 +61,6 @@ function foodform() {
 
     </div>
   );
-}
+}}
 
-export default foodform;
+export default FoodForm;

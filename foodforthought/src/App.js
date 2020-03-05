@@ -1,8 +1,10 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from 'react-bootstrap/Navbar';
-import foodform from "./foodform.js";
-import displayRecipe from "./displayRecipe.js";
+import FoodForm from "./foodform.js";
+import RecipeList from "./Components/RecipeList.js";
+
+// import displayRecipe from "./displayRecipe.js";
 import {
   BrowserRouter as Router,
   Route,
@@ -12,31 +14,53 @@ import {
 
 import './App.css';
 
-function App() {
-  return (
-    <div>
-      <div>
-        <Navbar style={{ backgroundColor: 'white', color: 'black' }}>
-          <Navbar.Brand >Food For Thought</Navbar.Brand>
-          <Navbar.Toggle />
-        </Navbar>
-      </div>
-      <div className="foodform">
-        <Router>
-          <Switch>
-            <Route exact path="/" component={foodform}></Route>
-          </Switch>
-        </Router>
-      </div>
-      <div className="displayRecipe">
-        <Router>
-          <Switch>
-            <Route exact path="/" component={displayRecipe}></Route>
-          </Switch>
-        </Router>
-      </div>
-    </div>
-  );
+class App extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            recpieList: null,
+            formInfo: null,
+            currentRecipe: null,
+        }
+    }
+
+    onSubmitFoodForm(formInput) {
+        this.setState({
+            formInfo: null
+        })
+    }
+
+    onClickRecipe(recipeId) {
+        this.setState({
+            currentRecipe: null
+            }
+        )
+    }
+
+    render() {
+
+        return (
+            <div className="container">
+                <div className="row">
+                    < Navbar style = {{backgroundColor: 'white', color:'black'}}>
+                        <Navbar.Brand > Food For Thought < /Navbar.Brand>
+                        < Navbar.Toggle / >
+                    < /Navbar>
+                < /div>
+                <div className = "row" >
+                    <FoodForm submitForm={this.onSubmitFoodForm.bind(this)} />
+                </div>
+                <div className ="row">
+                    <div className = "recipeList col">
+                        <RecipeList />
+                    </div>
+
+                    <div className = "recipe col"></div>
+                </div>
+            < /div>
+    )
+        ;
+    }
 }
 
 export default App;
