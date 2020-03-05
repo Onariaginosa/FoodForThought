@@ -2,7 +2,8 @@ import React, {useState, useEffect} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Form, Row, Col, Button } from 'react-bootstrap';
 // import ReactMultiSelectCheckboxes from 'react-multiselect-checkboxes';
-
+import ListOfRecipes from './ListOfRecipes.js';
+import { searchRecipes, apiHost } from './APICalls/api'
 
 import './App.css';
 
@@ -19,16 +20,8 @@ const FoodForm = () =>  {
     const [diet, setDiet] = useState();
 
     const DietaryRestrictions = [
-        ['Gluten Free', 1],
-        ['Ketogenic', 2],
-        ['Vegetarian', 3],
-        ['Lacto-Vegetarian', 4],
-        ['Ovo-Vegetarian', 5],
-        ['Vegan', 6],
-        ['Pescatarian', 7],
-        ['Paleo', 8],
-        ['Primal', 9],
-        ['Whole30', 10],
+        ['Gluten Free', 1], ['Ketogenic', 2], ['Vegetarian', 3], ['Lacto-Vegetarian', 4], ['Ovo-Vegetarian', 5], 
+        ['Vegan', 6], ['Pescatarian', 7], ['Paleo', 8], ['Primal', 9], ['Whole30', 10],
     ];
     
     useEffect(() => {
@@ -56,10 +49,8 @@ const FoodForm = () =>  {
                 };
             })
         );
-
+        apiHost('https://api.spoonacular.com/recipes')
     }, []);
-
-    
 
     const handleSubmit = async event => {
         event.preventDefault();
@@ -67,22 +58,23 @@ const FoodForm = () =>  {
         try {
             const limits = intolerances.reduce((a,o) => o.select ? a.concat(o.name) : a, []);
             setJustIntolerances(limits);
+            const result = await searchRecipes({
+                number: 10,
+                instructionsRequired: true,
+                // excludeIngredients: limits, 
+                diet: diet,
+                query: ingredients,
+            })
+            setFormData([result.results]);
         } catch (error) {
             setError('Sorry, but something went wrong');
         }
+        console.log(formData);
     }
-    // const limits =  intolerances.reduce((a,o) => o.select ? a.concat(o.name) : a, []);
     
-
     const handleSearchChange = event => setIngredients(event.target.value);
     const handleDietChange = event => setDiet(event.target.value);
 
-    const handleSelect = (event) => {
-        console.log("HERE!!!");
-        // setChecked({...intolerances, [event.target.name]: event.target.value })
-        console.log("checkedItems: ", intolerances);
-        console.log("EVENT TARGET = ", [event.target.name]);
-    }
     return (
         <div style={{backgroundColor: "#6FA86F", width:"50%", marginLeft: "25%", padding:"20px", borderRadius:"20px", color:"white"}}> 
             <Form onSubmit={handleSubmit}>
@@ -141,6 +133,13 @@ const FoodForm = () =>  {
             </Form>
             <p>{ingredients}</p>
             <p>{diet}</p>
+
+            <div class="RecipeList">
+                {formData === undefined ? <div>Loading ... </div> :
+                    // <RecipeList data />
+                    <ListOfRecipes results={formData} />
+                }
+            </div>
         </div>
     );
 }
