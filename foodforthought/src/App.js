@@ -2,9 +2,8 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from 'react-bootstrap/Navbar';
 import FoodForm from "./foodform.js";
-import RecipeList from "./Components/RecipeList.js";
-
-// import displayRecipe from "./displayRecipe.js";
+import Recipe from "./Recipe";
+import RecipeList from "./Components/RecipeList";
 import {
   BrowserRouter as Router,
   Route,
@@ -55,7 +54,13 @@ class App extends React.Component {
                         <RecipeList />
                     </div>
 
-                    <div className = "recipe col"></div>
+                    <div className = "recipe col">
+                        <Router>
+                            <Switch>
+                                <Route exact path="/" component={Recipe}></Route>
+                            </Switch>
+                        </Router>
+                    </div>
                 </div>
             < /div>
     )

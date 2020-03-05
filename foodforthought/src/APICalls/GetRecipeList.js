@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 // import Ingredients, Intolerance, dietary restriction from food form.js
 
-
 export default function GetRecipeList() {
     let [recipeList, setRecipeList] = useState([])
     const API_KEY = "3e9268cb3212476ab288e2cdc1fcba3d";
