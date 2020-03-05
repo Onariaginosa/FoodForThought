@@ -20,9 +20,18 @@ const DietaryRestrictions = [
 ];
 
 const Intolerances = [
-  { label: 'Intolerance 1', value: 1},
-  { label: 'Intolerance 2', value: 2},
-  
+  ["Dairy", 1],
+  ["Egg", 2],
+  ["Gluten", 3],
+  ["Grain", 4],
+  ["Peanut", 5],
+  ["Seafood", 6],
+  ["Sesame", 7],
+  ["Shellfish", 8],
+  ["Soy", 9],
+  ["Sulfite", 10],
+  ["Tree Nut", 11],
+  ["Wheat", 12],
 ];
 
 let ingredientData = [];
@@ -57,29 +66,13 @@ class foodform extends React.Component {
         const {ingredients} = this.state;
         return (
             <div style={{backgroundColor: "#6FA86F", width:"50%", marginLeft: "25%", padding:"20px", borderRadius:"20px", color:"white"}}> 
-                {/* <form onSubmit = {this.handleSubmit}>
-                    <ul> 
-                        <label>Food Form</label>
-                    </ul>
-        
-                    <ul>     
-                        <label>
-                        Search Ingredients:<br/>
-                        <input type="text" name="ingredients" onChange = {this.handleChange}/>
-                        </label>
-                    </ul>
-        
-                    <ul>
-                        <input type="submit" name = "submit" value="Submit" />
-                    </ul>
-                </form> */}
                 <Form onSubmit={this.handleSubmit}>
                 <Form.Group as={Row}>
                     <Form.Label as="legend" column sm={3}>
                         Diet
                     </Form.Label>
                     <Col sm={9}>
-                    <Form.Control as="select">
+                    <Form.Control as="select" id="options">
                         {DietaryRestrictions.map(type => (
                             <option id={type[1]}>{type[0]}</option>
                         ))}
@@ -92,18 +85,9 @@ class foodform extends React.Component {
                         Intolerances
                     </Form.Label>
                     <Col sm={9}>
-                        <Form.Check label="Dairy" id="1"/>
-                        <Form.Check label="Egg" id="2"/>
-                        <Form.Check label="Gluten" id="3" />
-                        <Form.Check label="Grain" />
-                        <Form.Check label="Peanut" />
-                        <Form.Check label="Seafood" />
-                        <Form.Check label="Sesame" />
-                        <Form.Check label="Shellfish" />
-                        <Form.Check label="Soy" />
-                        <Form.Check label="Sulfite" />
-                        <Form.Check label="Tree Nut" />
-                        <Form.Check label="Wheat" />
+                        {Intolerances.map(type => (
+                            <Form.Check label={type[0]} id={type[1]}/>
+                        ))}
                     </Col>
                     </Form.Group>
                 </fieldset>
@@ -112,7 +96,7 @@ class foodform extends React.Component {
                         Search Ingredients
                     </Form.Label>
                     <Col sm={9}>
-                    <Form.Control name="ingredients" type="text" placeholder="Search..." onChange = {this.handleChange} />
+                    <Form.Control name="ingredients" type="text" placeholder="tomato, spinach ..." onChange = {this.handleChange} />
                     </Col>
                 </Form.Group>
                 <div style={{display:"flex", justifyContent:"center"}}>
