@@ -1,22 +1,19 @@
 import React, {useState, useEffect} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Form, Row, Col, Button } from 'react-bootstrap';
-// import ReactMultiSelectCheckboxes from 'react-multiselect-checkboxes';
 import ListOfRecipes from './ListOfRecipes.js';
+import RecipeDetail from './RecipeDetail.js';
 import { searchRecipes, apiHost } from './APICalls/api'
-
 import './App.css';
 
-// let ingredientData = [];
-// let dietaryRestrictionData = "";
-// let intoleranceData = [];
 
 const FoodForm = () =>  {
     const [formData, setFormData] = useState();
     const [intolerances, setIntolerances] = useState([]);
     const [justIntolerances, setJustIntolerances] = useState('');
     const [ingredients, setIngredients] = useState();
-    const [error, setError] = useState(null)
+    const [error, setError] = useState(null);
+    const [recipe, setRecipe] = useState(null);
     const [diet, setDiet] = useState();
 
     const DietaryRestrictions = [
@@ -61,22 +58,22 @@ const FoodForm = () =>  {
             const result = await searchRecipes({
                 number: 10,
                 instructionsRequired: true,
-                // excludeIngredients: limits, 
+                excludeIngredients: limits.toString(), 
                 diet: diet,
                 query: ingredients,
             })
-            setFormData([result.results]);
+            setFormData(result.results);
         } catch (error) {
             setError('Sorry, but something went wrong');
         }
-        console.log(formData);
     }
     
     const handleSearchChange = event => setIngredients(event.target.value);
     const handleDietChange = event => setDiet(event.target.value);
 
     return (
-        <div style={{backgroundColor: "#6FA86F", width:"50%", marginLeft: "25%", padding:"20px", borderRadius:"20px", color:"white"}}> 
+        <div> 
+            <div style={{backgroundColor: "#6FA86F", width:"50%", marginLeft: "25%", padding:"20px", borderRadius:"20px", color:"white"}}>
             <Form onSubmit={handleSubmit}>
             <Form.Group as={Row}>
                 <Form.Label as="legend" column sm={3}>
@@ -131,15 +128,15 @@ const FoodForm = () =>  {
             </Button>
             </div>
             </Form>
-            <p>{ingredients}</p>
-            <p>{diet}</p>
-
+            </div>          
             <div class="RecipeList">
-                {formData === undefined ? <div>Loading ... </div> :
-                    // <RecipeList data />
-                    <ListOfRecipes results={formData} />
+                {formData === undefined ? <div> </div> :
+                    <div>
+                    <ListOfRecipes results={formData} setter={setRecipe} />
+                    </div>
                 }
             </div>
+            <RecipeDetail recipe={recipe} />
         </div>
     );
 }

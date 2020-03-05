@@ -58,7 +58,8 @@ const queryWithApiKey = (resource, params) => fetch(`${urlFor(resource)}?${param
 }).then(okCheck, emitNativeError)
   .then(response => response.json())
 
-const searchRecipes = params => queryWithApiKey('/search', params)
+const searchRecipes = params => queryWithApiKey('/search', params);
+const getRecipeDetails = params => queryWithApiKey('')
 
 export {
   apiHost,
