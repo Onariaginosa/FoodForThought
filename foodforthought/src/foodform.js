@@ -17,10 +17,10 @@ const FoodForm = () =>  {
     const [diet, setDiet] = useState();
 
     const DietaryRestrictions = [
-        ['Gluten Free', 1], ['Ketogenic', 2], ['Vegetarian', 3], ['Lacto-Vegetarian', 4], ['Ovo-Vegetarian', 5], 
+        ['Gluten Free', 1], ['Ketogenic', 2], ['Vegetarian', 3], ['Lacto-Vegetarian', 4], ['Ovo-Vegetarian', 5],
         ['Vegan', 6], ['Pescatarian', 7], ['Paleo', 8], ['Primal', 9], ['Whole30', 10],
     ];
-    
+
     useEffect(() => {
         let intolerances = [
             { name: "Dairy", id: 1 },
@@ -58,7 +58,7 @@ const FoodForm = () =>  {
             const result = await searchRecipes({
                 number: 10,
                 instructionsRequired: true,
-                excludeIngredients: limits.toString(), 
+                excludeIngredients: limits.toString(),
                 diet: diet,
                 query: ingredients,
             })
@@ -67,18 +67,18 @@ const FoodForm = () =>  {
             setError('Sorry, but something went wrong');
         }
     }
-    
+
     const handleSearchChange = event => setIngredients(event.target.value);
     const handleDietChange = event => setDiet(event.target.value);
 
     return (
-        <div> 
+        <div>
             <div style={{backgroundColor: "#6FA86F", width:"50%", marginLeft: "25%", padding:"20px", borderRadius:"20px", color:"white"}}>
             <Form onSubmit={handleSubmit}>
             <Form.Group as={Row}>
                 <Form.Label as="legend" column sm={3}>
                     Diet
-                </Form.Label>                    
+                </Form.Label>
                 <Col sm={9}>
                 <Form.Control value={diet} as="select" id="options" onChange={handleDietChange}>
                     {DietaryRestrictions.map(type => (
@@ -94,11 +94,11 @@ const FoodForm = () =>  {
                 </Form.Label>
                 <Col sm={9}>
                     {intolerances.map(type => (
-                        <Form.Check 
-                            checked={intolerances.select} 
-                            type="checkbox" 
-                            label={type.name} 
-                            key={type.id} 
+                        <Form.Check
+                            checked={intolerances.select}
+                            type="checkbox"
+                            label={type.name}
+                            key={type.id}
                             onChange={event => {
                                 let checked = event.target.checked;
                                 setIntolerances(
@@ -128,7 +128,7 @@ const FoodForm = () =>  {
             </Button>
             </div>
             </Form>
-            </div>          
+            </div>
             <div class="RecipeList">
                 {formData === undefined ? <div> </div> :
                     <div>

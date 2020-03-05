@@ -1,5 +1,5 @@
-
 // export default function GetRecipe() {
+
 const getRecipe = async (props) => {
     const API_KEY = "3e9268cb3212476ab288e2cdc1fcba3d";
     let RECIPE_ID = props;
@@ -12,7 +12,7 @@ const getRecipe = async (props) => {
 
 
 
-    
+
     const response = await fetch(requestString)
     console.log("RESPONSE RECEIVED")
     if (response.status !== 200) {
