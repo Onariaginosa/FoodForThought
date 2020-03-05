@@ -56,8 +56,8 @@ class foodform extends React.Component {
     render() {
         const {ingredients} = this.state;
         return (
-            <div style={{backgroundColor: "white", width:"50%", marginLeft: "25%"}}> 
-                <form onSubmit = {this.handleSubmit}>
+            <div style={{backgroundColor: "#6FA86F", width:"50%", marginLeft: "25%", padding:"20px", borderRadius:"20px", color:"white"}}> 
+                {/* <form onSubmit = {this.handleSubmit}>
                     <ul> 
                         <label>Food Form</label>
                     </ul>
@@ -72,14 +72,13 @@ class foodform extends React.Component {
                     <ul>
                         <input type="submit" name = "submit" value="Submit" />
                     </ul>
-                </form>
-                <p>{ingredients}</p>
-                <Form>
+                </form> */}
+                <Form onSubmit={this.handleSubmit}>
                 <Form.Group as={Row}>
-                    <Form.Label as="legend" column sm={2}>
+                    <Form.Label as="legend" column sm={3}>
                         Diet
                     </Form.Label>
-                    <Col sm={10}>
+                    <Col sm={9}>
                     <Form.Control as="select">
                         {DietaryRestrictions.map(type => (
                             <option id={type[1]}>{type[0]}</option>
@@ -89,10 +88,10 @@ class foodform extends React.Component {
                 </Form.Group>
                 <fieldset>
                     <Form.Group as={Row}>
-                    <Form.Label as="legend" column sm={2}>
+                    <Form.Label as="legend" column sm={3}>
                         Intolerances
                     </Form.Label>
-                    <Col sm={10}>
+                    <Col sm={9}>
                         <Form.Check label="Dairy" id="1"/>
                         <Form.Check label="Egg" id="2"/>
                         <Form.Check label="Gluten" id="3" />
@@ -108,13 +107,21 @@ class foodform extends React.Component {
                     </Col>
                     </Form.Group>
                 </fieldset>
-                <div style={{width: "100%;", marginLeft:"48%"}}>
-                <Button variant="primary" type="submit" center>
-                    Submit
+                <Form.Group as={Row}>
+                    <Form.Label as="legend" column sm={3}>
+                        Search Ingredients
+                    </Form.Label>
+                    <Col sm={9}>
+                    <Form.Control name="ingredients" type="text" placeholder="Search..." onChange = {this.handleChange} />
+                    </Col>
+                </Form.Group>
+                <div style={{display:"flex", justifyContent:"center"}}>
+                <Button variant="dark" type="submit">
+                    Generate Recipes
                 </Button>
                 </div>
                 </Form>
-        
+                <p>{ingredients}</p>
             </div>
         );
     }
